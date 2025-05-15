@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap');
 
 :root {
+    /* Light Theme - Default */
     --primary-color: #5c2d91;      /* 深紫色 - 主要品牌色 */
     --secondary-color: #00a4bd;    /* 青色 - 辅助品牌色 */
     --accent-color: #ff6b6b;       /* 珊瑚红 - 强调色 */
@@ -13,6 +14,26 @@
     --card-bg: #ffffff;            /* 纯白 - 卡片背景 */
     --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);  /* 更柔和的阴影 */
     --success-color: #2ecc71;      /* 绿色 - 成功状态 */
+    
+    /* Theme Transition */
+    --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+    --primary-color: #9d65de;      /* 亮紫色 - 暗色模式主色 */
+    --secondary-color: #3fcbdf;    /* 亮青色 - 暗色模式辅助色 */
+    --accent-color: #ff8c8c;       /* 亮珊瑚色 - 暗色模式强调色 */
+    --text-color: #eceff4;         /* 近白色 - 暗色模式主文本 */
+    --light-text: #aeb9cc;         /* 亮灰色 - 暗色模式次要文本 */
+    --light-color: #1f2937;        /* 深蓝灰 - 暗色模式背景色 */
+    --dark-color: #141921;         /* 近黑色 - 暗色模式深色区域 */
+    --card-bg: #2d3748;            /* 深蓝灰 - 暗色模式卡片背景 */
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  /* 暗色模式阴影 */
+    --success-color: #2ecc71;      /* 绿色 - 保持不变 */
+}
+
+body, html {
+    transition: background-color var(--transition-speed) ease;
 }
 
 body {
@@ -27,6 +48,55 @@ body {
     line-height: 1.6;
 }
 
+/* Theme Toggle */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.theme-toggle {
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle i {
+    transition: all 0.3s ease;
+}
+
+.theme-toggle .fa-moon {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    color: #f1c40f;
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon::before {
+    content: "\f185"; /* Font Awesome sun icon code */
+}
+
 /* Header & Navigation */
 .main-header {
     background-color: var(--card-bg);
@@ -35,6 +105,8 @@ body {
     top: 0;
     z-index: 1000;
     width: 100%;
+    transition: background-color var(--transition-speed) ease, 
+                box-shadow var(--transition-speed) ease;
 }
 
 .header-container {
@@ -49,6 +121,7 @@ body {
 .logo-text {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .nav-logo {
@@ -64,6 +137,14 @@ body {
     color: var(--secondary-color);
 }
 
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    flex: 1;
+}
+
 .main-nav {
     display: flex;
     align-items: center;
@@ -75,10 +156,11 @@ body {
     margin: 0;
     padding: 0;
     align-items: center;
+    gap: 1.5rem;
 }
 
 .nav-links li {
-    margin: 0 1rem;
+    margin: 0;
 }
 
 .nav-item {
@@ -554,6 +636,15 @@ footer p {
     }
     
     /* Navigation responsive styles */
+    .nav-container {
+        gap: 0.75rem;
+    }
+    
+    .main-nav {
+        order: 3;
+        position: static;
+    }
+
     .nav-links {
         display: none;
         position: absolute;
@@ -564,6 +655,7 @@ footer p {
         background-color: var(--card-bg);
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         padding: 1rem 0;
+        z-index: 100;
     }
     
     .nav-links.active {
@@ -582,8 +674,13 @@ footer p {
         margin-top: 0.5rem;
     }
     
+    .theme-toggle-container {
+        order: 1;
+    }
+    
     .mobile-nav-toggle {
         display: block;
+        order: 2;
     }
 }
 
@@ -595,4 +692,18 @@ footer p {
     .nav-logo {
         font-size: 1.3rem;
     }
+}
+
+/* Theme Toggle Animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.theme-toggle-animate {
+    animation: rotate 0.5s ease-in-out;
 } 

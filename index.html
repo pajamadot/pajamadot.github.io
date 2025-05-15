@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,22 +15,29 @@
             <div class="logo-text">
                 <a href="#" class="nav-logo">PajamaDot</a>
             </div>
-            <nav class="main-nav">
-                <ul class="nav-links">
-                    <li><a href="#" class="nav-item">Games</a></li>
-                    <li><a href="#" class="nav-item">About Us</a></li>
-                    <li class="social-links">
-                        <span>Follow Us</span>
-                        <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                    </li>
-                </ul>
-            </nav>
-            <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
-                <span class="sr-only">Menu</span>
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="nav-container">
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="#" class="nav-item">Games</a></li>
+                        <li><a href="#" class="nav-item">About Us</a></li>
+                        <li class="social-links">
+                            <span>Follow Us</span>
+                            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="theme-toggle-container">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 

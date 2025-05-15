@@ -1,6 +1,38 @@
 // Professional JavaScript for PajamaDot Studios website
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved theme preference or use the system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    
+    // Set initial theme
+    if (savedTheme) {
+        htmlElement.setAttribute('data-theme', savedTheme);
+    } else {
+        htmlElement.setAttribute('data-theme', systemTheme);
+    }
+    
+    // Toggle theme when button is clicked
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Add button animation
+            themeToggle.classList.add('theme-toggle-animate');
+            setTimeout(() => {
+                themeToggle.classList.remove('theme-toggle-animate');
+            }, 300);
+        });
+    }
+    
     // Update copyright year dynamically
     const currentYear = new Date().getFullYear();
     const copyrightElement = document.querySelector('footer p');
