@@ -1,51 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
   <!-- Background -->
-  <rect width="300" height="300" fill="#8e44ad" />
+  <rect width="300" height="300" fill="#5c2d91" />
   
   <!-- Gradient overlay -->
   <rect width="300" height="300" fill="url(#gradient)" />
   
   <!-- Face shape -->
-  <circle cx="150" cy="130" r="80" fill="#ecf0f1" />
+  <circle cx="150" cy="130" r="80" fill="#f7f9fc" />
   
   <!-- Hair -->
-  <path d="M70,130 C70,80 120,50 150,50 C180,50 230,80 230,130 C230,130 220,100 150,100 C80,100 70,130 70,130 Z" fill="#34495e" />
+  <path d="M70,130 C70,80 120,50 150,50 C180,50 230,80 230,130 C230,130 220,100 150,100 C80,100 70,130 70,130 Z" fill="#292e39" />
   
   <!-- Eyes -->
-  <circle cx="120" cy="120" r="10" fill="#2c3e50" />
-  <circle cx="180" cy="120" r="10" fill="#2c3e50" />
+  <circle cx="120" cy="120" r="10" fill="#2e3440" />
+  <circle cx="180" cy="120" r="10" fill="#2e3440" />
   
   <!-- Technical glasses -->
-  <rect x="105" y="115" width="90" height="10" rx="5" fill="none" stroke="#34495e" stroke-width="3" />
-  <path d="M105,120 L90,110" stroke="#34495e" stroke-width="3" />
-  <path d="M195,120 L210,110" stroke="#34495e" stroke-width="3" />
+  <rect x="105" y="115" width="90" height="10" rx="5" fill="none" stroke="#292e39" stroke-width="3" />
+  <path d="M105,120 L90,110" stroke="#292e39" stroke-width="3" />
+  <path d="M195,120 L210,110" stroke="#292e39" stroke-width="3" />
   
   <!-- Mouth -->
-  <path d="M130,160 C140,170 160,170 170,160" fill="none" stroke="#34495e" stroke-width="3" stroke-linecap="round" />
+  <path d="M130,160 C140,170 160,170 170,160" fill="none" stroke="#292e39" stroke-width="3" stroke-linecap="round" />
   
   <!-- Tech elements -->
-  <circle cx="90" cy="90" r="8" fill="none" stroke="#3498db" stroke-width="2" />
-  <circle cx="210" cy="90" r="8" fill="none" stroke="#3498db" stroke-width="2" />
-  <path d="M90,90 L105,115" stroke="#3498db" stroke-width="2" stroke-dasharray="3,3" />
-  <path d="M210,90 L195,115" stroke="#3498db" stroke-width="2" stroke-dasharray="3,3" />
+  <circle cx="90" cy="90" r="8" fill="none" stroke="#00a4bd" stroke-width="2" />
+  <circle cx="210" cy="90" r="8" fill="none" stroke="#00a4bd" stroke-width="2" />
+  <path d="M90,90 L105,115" stroke="#00a4bd" stroke-width="2" stroke-dasharray="3,3" />
+  <path d="M210,90 L195,115" stroke="#00a4bd" stroke-width="2" stroke-dasharray="3,3" />
   
   <!-- Circuit board patterns -->
-  <path d="M50,220 L250,220" stroke="#3498db" stroke-width="3" />
-  <path d="M70,220 L70,250" stroke="#3498db" stroke-width="3" />
-  <path d="M100,220 L100,250" stroke="#3498db" stroke-width="3" />
-  <path d="M130,220 L130,250" stroke="#3498db" stroke-width="3" />
-  <path d="M160,220 L160,250" stroke="#3498db" stroke-width="3" />
-  <path d="M190,220 L190,250" stroke="#3498db" stroke-width="3" />
-  <path d="M220,220 L220,250" stroke="#3498db" stroke-width="3" />
-  <circle cx="70" cy="220" r="5" fill="#e74c3c" />
-  <circle cx="130" cy="220" r="5" fill="#e74c3c" />
-  <circle cx="190" cy="220" r="5" fill="#e74c3c" />
+  <path d="M50,220 L250,220" stroke="#00a4bd" stroke-width="3" />
+  <path d="M70,220 L70,250" stroke="#00a4bd" stroke-width="3" />
+  <path d="M100,220 L100,250" stroke="#00a4bd" stroke-width="3" />
+  <path d="M130,220 L130,250" stroke="#00a4bd" stroke-width="3" />
+  <path d="M160,220 L160,250" stroke="#00a4bd" stroke-width="3" />
+  <path d="M190,220 L190,250" stroke="#00a4bd" stroke-width="3" />
+  <path d="M220,220 L220,250" stroke="#00a4bd" stroke-width="3" />
+  <circle cx="70" cy="220" r="5" fill="#ff6b6b" />
+  <circle cx="130" cy="220" r="5" fill="#ff6b6b" />
+  <circle cx="190" cy="220" r="5" fill="#ff6b6b" />
   
   <!-- Gradient definition -->
   <defs>
     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8e44ad" stop-opacity="0.7" />
-      <stop offset="100%" stop-color="#e74c3c" stop-opacity="0.7" />
+      <stop offset="0%" stop-color="#5c2d91" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#00a4bd" stop-opacity="0.7" />
     </linearGradient>
   </defs>
 </svg> 

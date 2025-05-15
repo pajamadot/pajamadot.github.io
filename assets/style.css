@@ -3,14 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap');
 
 :root {
-    --primary-color: #8e44ad;
-    --secondary-color: #e74c3c;
-    --accent-color: #3498db;
-    --text-color: #2c3e50;
-    --light-color: #ecf0f1;
-    --dark-color: #34495e;
-    --card-bg: #ffffff;
-    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --primary-color: #5c2d91;      /* 深紫色 - 主要品牌色 */
+    --secondary-color: #00a4bd;    /* 青色 - 辅助品牌色 */
+    --accent-color: #ff6b6b;       /* 珊瑚红 - 强调色 */
+    --text-color: #2e3440;         /* 深灰蓝 - 主文本 */
+    --light-text: #7b8a9a;         /* 浅灰 - 次要文本 */
+    --light-color: #f7f9fc;        /* 超浅灰 - 背景色 */
+    --dark-color: #292e39;         /* 深灰蓝 - 深色区域 */
+    --card-bg: #ffffff;            /* 纯白 - 卡片背景 */
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);  /* 更柔和的阴影 */
+    --success-color: #2ecc71;      /* 绿色 - 成功状态 */
 }
 
 body {
@@ -20,9 +22,137 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f5f7fa;
+    background-color: var(--light-color);
     color: var(--text-color);
     line-height: 1.6;
+}
+
+/* Header & Navigation */
+.main-header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: var(--secondary-color);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-item {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.3rem 0;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--primary-color);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+}
+
+.social-links span {
+    margin-right: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.social-icon {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-left: 0.7rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.mobile-nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 /* Main Content Styles */
@@ -40,11 +170,11 @@ main {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    background: white;
+    background: var(--card-bg);
     margin: 0 0 2rem 0;
     padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
     opacity: 0;
@@ -84,7 +214,7 @@ main {
 
 .logo:hover {
     transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(92, 45, 145, 0.2);
 }
 
 .hero-content {
@@ -114,7 +244,7 @@ main {
     font-size: 1.1rem;
     margin-bottom: 2rem;
     max-width: 600px;
-    color: var(--text-color);
+    color: var(--light-text);
 }
 
 .hero-cta {
@@ -126,11 +256,11 @@ main {
 .team-section,
 .services-section,
 .cta-section {
-    background: white;
+    background: var(--card-bg);
     margin: 2rem 0;
     padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
 }
@@ -167,7 +297,7 @@ h2::after {
 }
 
 p {
-    color: var(--text-color);
+    color: var(--light-text);
     font-size: 1rem;
     margin-bottom: 1rem;
 }
@@ -183,19 +313,20 @@ p {
 
 .team-card {
     background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 1.8rem;
     box-shadow: var(--card-shadow);
     flex: 1;
     min-width: 200px;
     max-width: 280px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
 }
 
 .team-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 30px rgba(92, 45, 145, 0.1);
 }
 
 .avatar-container {
@@ -204,9 +335,9 @@ p {
     margin: 0 auto 1rem;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid var(--primary-color);
+    border: 3px solid var(--secondary-color);
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.2);
+    box-shadow: 0 5px 15px rgba(92, 45, 145, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -226,7 +357,7 @@ p {
 .member-icon {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     background-clip: text;
@@ -243,7 +374,7 @@ p {
 }
 
 .member-role {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 0.8rem;
@@ -251,7 +382,7 @@ p {
 
 .member-desc {
     font-size: 0.9rem;
-    color: #777;
+    color: var(--light-text);
     margin-bottom: 0;
 }
 
@@ -266,23 +397,24 @@ p {
 .service-item {
     flex: 1;
     min-width: 250px;
-    background: white;
+    background: var(--card-bg);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
 }
 
 .service-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 30px rgba(92, 45, 145, 0.1);
 }
 
 .service-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     background-clip: text;
@@ -300,7 +432,7 @@ p {
 .cta-section {
     text-align: center;
     padding: 3rem;
-    background: linear-gradient(135deg, rgba(142, 68, 173, 0.05), rgba(231, 76, 60, 0.05));
+    background: linear-gradient(135deg, rgba(92, 45, 145, 0.03), rgba(0, 164, 189, 0.03));
 }
 
 .cta-section h2 {
@@ -320,22 +452,22 @@ p {
 }
 
 .cta-button {
-    padding: 0.9rem 2.5rem;
+    padding: 1rem 2.5rem;
     font-size: 1rem;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(142, 68, 173, 0.3);
+    box-shadow: 0 4px 10px rgba(92, 45, 145, 0.3);
     transition: all 0.3s ease;
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(142, 68, 173, 0.5);
+    box-shadow: 0 8px 20px rgba(92, 45, 145, 0.4);
 }
 
 /* Footer Styles */
@@ -357,6 +489,34 @@ footer p {
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
     font-size: 0.9rem;
+}
+
+/* Animation Effects */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-reveal.visible .scroll-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.button-pressed {
+    transform: scale(0.95) !important;
+    box-shadow: 0 2px 5px rgba(92, 45, 145, 0.3) !important;
 }
 
 /* Responsive adjustments */
@@ -392,32 +552,47 @@ footer p {
         width: 100%;
         max-width: none;
     }
+    
+    /* Navigation responsive styles */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: var(--card-bg);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links li {
+        margin: 0.7rem 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .social-links {
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
 }
 
-/* Animation Effects */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.scroll-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.scroll-reveal.visible .scroll-item {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.button-pressed {
-    transform: scale(0.95) !important;
-    box-shadow: 0 2px 5px rgba(142, 68, 173, 0.3) !important;
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0.5rem 1rem;
+    }
+    
+    .nav-logo {
+        font-size: 1.3rem;
+    }
 } 
