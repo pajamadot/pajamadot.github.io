@@ -4,32 +4,32 @@
 
 :root {
     /* Light Theme - Default */
-    --primary-color: #5c2d91;      /* 深紫色 - 主要品牌色 */
-    --secondary-color: #00a4bd;    /* 青色 - 辅助品牌色 */
-    --accent-color: #ff6b6b;       /* 珊瑚红 - 强调色 */
-    --text-color: #2e3440;         /* 深灰蓝 - 主文本 */
+    --primary-color: #6a5acd;      /* 淡紫色 - 更柔和的主色调 */
+    --secondary-color: #64b5f6;    /* 柔和蓝色 - 更友好的辅助色 */
+    --accent-color: #ffb6c1;       /* 淡粉色 - 可爱的强调色 */
+    --text-color: #4a4a4a;         /* 柔和的深灰 - 不太强烈的文本 */
     --light-text: #7b8a9a;         /* 浅灰 - 次要文本 */
-    --light-color: #f7f9fc;        /* 超浅灰 - 背景色 */
-    --dark-color: #292e39;         /* 深灰蓝 - 深色区域 */
+    --light-color: #f8f6ff;        /* 带紫色调的白色 - 更温馨的背景色 */
+    --dark-color: #3f3d56;         /* 紫灰色 - 深色区域 */
     --card-bg: #ffffff;            /* 纯白 - 卡片背景 */
-    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);  /* 更柔和的阴影 */
-    --success-color: #2ecc71;      /* 绿色 - 成功状态 */
+    --card-shadow: 0 6px 20px rgba(106, 90, 205, 0.1);  /* 更柔和的紫色阴影 */
+    --success-color: #7bc9a3;      /* 柔和的绿色 - 成功状态 */
     
     /* Theme Transition */
     --transition-speed: 0.3s;
 }
 
 [data-theme="dark"] {
-    --primary-color: #9d65de;      /* 亮紫色 - 暗色模式主色 */
-    --secondary-color: #3fcbdf;    /* 亮青色 - 暗色模式辅助色 */
-    --accent-color: #ff8c8c;       /* 亮珊瑚色 - 暗色模式强调色 */
-    --text-color: #eceff4;         /* 近白色 - 暗色模式主文本 */
-    --light-text: #aeb9cc;         /* 亮灰色 - 暗色模式次要文本 */
-    --light-color: #1f2937;        /* 深蓝灰 - 暗色模式背景色 */
-    --dark-color: #141921;         /* 近黑色 - 暗色模式深色区域 */
-    --card-bg: #2d3748;            /* 深蓝灰 - 暗色模式卡片背景 */
-    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  /* 暗色模式阴影 */
-    --success-color: #2ecc71;      /* 绿色 - 保持不变 */
+    --primary-color: #b39ddb;      /* 亮淡紫色 - 暗色模式主色 */
+    --secondary-color: #90caf9;    /* 亮淡蓝色 - 暗色模式辅助色 */
+    --accent-color: #f8bbd0;       /* 亮淡粉色 - 暗色模式强调色 */
+    --text-color: #e6e6e6;         /* 明亮的灰白色 - 暗色模式主文本 */
+    --light-text: #b0bec5;         /* 亮灰色 - 暗色模式次要文本 */
+    --light-color: #2d2b42;        /* 深紫蓝 - 暗色模式背景色 */
+    --dark-color: #1e1c36;         /* 深紫黑 - 暗色模式深色区域 */
+    --card-bg: #383653;            /* 深紫灰 - 暗色模式卡片背景 */
+    --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);  /* 暗色模式阴影 */
+    --success-color: #7bc9a3;      /* 柔和的绿色 - 保持不变 */
 }
 
 body, html {
@@ -255,7 +255,7 @@ main {
     background: var(--card-bg);
     margin: 0 0 2rem 0;
     padding: 3rem;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
@@ -341,7 +341,7 @@ main {
     background: var(--card-bg);
     margin: 2rem 0;
     padding: 3rem;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
@@ -366,6 +366,7 @@ h2 {
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.5rem;
+    font-size: 1.9rem;
 }
 
 h2::after {
@@ -374,8 +375,9 @@ h2::after {
     left: 0;
     bottom: 0;
     height: 3px;
-    width: 50px;
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    width: 60px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
 }
 
 p {
@@ -395,7 +397,7 @@ p {
 
 .team-card {
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.8rem;
     box-shadow: var(--card-shadow);
     flex: 1;
@@ -417,7 +419,7 @@ p {
     margin: 0 auto 1rem;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid var(--secondary-color);
+    border: 4px solid var(--secondary-color);
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     box-shadow: 0 5px 15px rgba(92, 45, 145, 0.2);
     display: flex;
@@ -481,7 +483,7 @@ p {
     min-width: 250px;
     background: var(--card-bg);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: var(--card-shadow);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -494,13 +496,14 @@ p {
 }
 
 .service-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
     color: var(--secondary-color);
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    opacity: 0.9;
 }
 
 .service-item h3 {
@@ -534,22 +537,22 @@ p {
 }
 
 .cta-button {
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
+    padding: 0.9rem 2.5rem;
+    font-size: 1.05rem;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: 600;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(92, 45, 145, 0.3);
+    box-shadow: 0 8px 20px rgba(106, 90, 205, 0.25);
     transition: all 0.3s ease;
 }
 
 .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(92, 45, 145, 0.4);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(106, 90, 205, 0.35);
 }
 
 /* Footer Styles */
