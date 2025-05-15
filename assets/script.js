@@ -77,6 +77,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // Skip empty links
+            
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Close mobile menu if open
+                if (navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    if (navToggle) {
+                        navToggle.setAttribute('aria-expanded', false);
+                        const icon = navToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                }
+                
+                // Calculate header height for offset
+                const headerHeight = document.querySelector('.main-header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
     // Add entrance animation for hero section
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) {
@@ -139,7 +175,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // You would replace this with actual navigation or form display
                 if (this.textContent.includes('Portfolio')) {
-                    alert('Portfolio page coming soon!');
+                    document.querySelector('#games').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 } else if (this.textContent.includes('Touch')) {
                     alert('Contact form coming soon!');
                 }
