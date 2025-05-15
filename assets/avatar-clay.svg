@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <!-- Background -->
+  <rect width="300" height="300" fill="#8e44ad" />
+  
+  <!-- Gradient overlay -->
+  <rect width="300" height="300" fill="url(#gradient)" />
+  
+  <!-- Code background elements -->
+  <text x="20" y="40" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">&lt;div class="game"&gt;</text>
+  <text x="30" y="60" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">function init() {</text>
+  <text x="40" y="80" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">return new Game();</text>
+  <text x="30" y="100" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">}</text>
+  <text x="230" y="200" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">const player = {</text>
+  <text x="240" y="220" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">score: 0</text>
+  <text x="230" y="240" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">};</text>
+  <text x="20" y="280" fill="#ffffff" opacity="0.2" font-family="monospace" font-size="14">&lt;/div&gt;</text>
+  
+  <!-- Face shape -->
+  <circle cx="150" cy="130" r="80" fill="#ecf0f1" />
+  
+  <!-- Hair -->
+  <path d="M70,130 C70,80 120,50 150,50 C180,50 230,80 230,130 C230,130 220,90 150,90 C80,90 70,130 70,130 Z" fill="#34495e" />
+  
+  <!-- Eyes with code glowing effect -->
+  <circle cx="120" cy="120" r="12" fill="#2c3e50" />
+  <circle cx="180" cy="120" r="12" fill="#2c3e50" />
+  <circle cx="120" cy="120" r="6" fill="#3498db" />
+  <circle cx="180" cy="120" r="6" fill="#3498db" />
+  
+  <!-- Glasses -->
+  <rect x="105" y="110" width="30" height="20" rx="5" fill="none" stroke="#34495e" stroke-width="2" />
+  <rect x="165" y="110" width="30" height="20" rx="5" fill="none" stroke="#34495e" stroke-width="2" />
+  <path d="M135,120 L165,120" stroke="#34495e" stroke-width="2" />
+  <path d="M105,120 L90,125" stroke="#34495e" stroke-width="2" />
+  <path d="M195,120 L210,125" stroke="#34495e" stroke-width="2" />
+  
+  <!-- Mouth -->
+  <path d="M130,160 C140,170 160,170 170,160" fill="none" stroke="#34495e" stroke-width="3" stroke-linecap="round" />
+  
+  <!-- Code blocks floating around -->
+  <rect x="70" y="200" width="50" height="20" rx="3" fill="#3498db" opacity="0.8" />
+  <rect x="75" y="205" width="40" height="10" rx="2" fill="white" opacity="0.7" />
+  
+  <rect x="180" y="190" width="40" height="15" rx="3" fill="#e74c3c" opacity="0.8" />
+  <rect x="185" y="193" width="30" height="8" rx="2" fill="white" opacity="0.7" />
+  
+  <rect x="130" y="220" width="60" height="25" rx="3" fill="#27ae60" opacity="0.8" />
+  <rect x="135" y="225" width="50" height="15" rx="2" fill="white" opacity="0.7" />
+  
+  <!-- Small code symbols -->
+  <text x="78" y="213" fill="#34495e" font-family="monospace" font-size="10">if()</text>
+  <text x="188" y="200" fill="#34495e" font-family="monospace" font-size="7">else</text>
+  <text x="140" y="236" fill="#34495e" font-family="monospace" font-size="12">function</text>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8e44ad" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#e74c3c" stop-opacity="0.7" />
+    </linearGradient>
+  </defs>
+</svg> 
