@@ -186,6 +186,105 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Social links expansion functionality
+    const socialLinks = document.querySelector('.social-links');
+    const followUsSpan = document.querySelector('.social-links span');
+    
+    if (socialLinks && followUsSpan) {
+        let isExpanded = false;
+        
+        // Function to handle social links expansion on hover
+        const handleSocialExpansion = function() {
+            isExpanded = true;
+            socialLinks.classList.add('expanded');
+        };
+        
+        const handleSocialCollapse = function() {
+            isExpanded = false;
+            socialLinks.classList.remove('expanded');
+        };
+        
+        // Add hover event listeners for social expansion
+        followUsSpan.addEventListener('mouseenter', handleSocialExpansion);
+        
+        // Keep expanded when hovering over the social links area
+        socialLinks.addEventListener('mouseenter', function() {
+            if (!isExpanded) {
+                handleSocialExpansion();
+            }
+        });
+        
+        // Remove mouseleave events to keep expanded state
+        // socialLinks.addEventListener('mouseleave', function(e) {
+        //     // Check if we're moving to the followUsSpan
+        //     const relatedTarget = e.relatedTarget;
+        //     if (!socialLinks.contains(relatedTarget) && !followUsSpan.contains(relatedTarget)) {
+        //         handleSocialCollapse();
+        //     }
+        // });
+        
+        // Also handle mouseleave for the span - but don't collapse
+        followUsSpan.addEventListener('mouseleave', function(e) {
+            // Keep expanded - don't collapse when leaving the span
+            // const relatedTarget = e.relatedTarget;
+            // if (!socialLinks.contains(relatedTarget) && !followUsSpan.contains(relatedTarget)) {
+            //     handleSocialCollapse();
+            // }
+        });
+        
+        // Also expand on click for better UX
+        followUsSpan.addEventListener('click', function() {
+            if (isExpanded) {
+                handleSocialCollapse();
+            } else {
+                handleSocialExpansion();
+            }
+        });
+        
+        // Add click functionality to social icons
+        const socialIcons = document.querySelectorAll('.social-icon');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // You can add actual navigation here
+                const platform = this.getAttribute('aria-label');
+                console.log(`Clicked on ${platform}`);
+                // Example: window.open('your-social-link', '_blank');
+            });
+        });
+        
+            // Add click outside to close functionality
+    document.addEventListener('click', function(e) {
+        if (!socialLinks.contains(e.target) && !followUsSpan.contains(e.target)) {
+            if (isExpanded) {
+                handleSocialCollapse();
+            }
+        }
+    });
+    
+    // Header scroll effect
+    const header = document.querySelector('.main-header');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+}
+
     // Logo interaction - subtle hover effect
     const logo = document.querySelector('.logo');
     if (logo) {
