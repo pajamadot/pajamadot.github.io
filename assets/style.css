@@ -216,6 +216,69 @@ body {
     background-color: var(--light-color);
     color: var(--text-color);
     line-height: 1.6;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png'),
+        url('dot.png');
+    background-position: 
+        8% 15%,
+        85% 8%,
+        25% 35%,
+        92% 28%,
+        45% 12%,
+        15% 65%,
+        78% 72%,
+        32% 88%,
+        68% 42%,
+        55% 55%,
+        18% 78%,
+        82% 18%,
+        38% 62%,
+        72% 85%,
+        12% 45%;
+    background-repeat: no-repeat;
+    background-size: 
+        60px 60px,
+        50px 50px,
+        70px 70px,
+        40px 40px,
+        80px 80px,
+        55px 55px,
+        65px 65px,
+        45px 45px,
+        75px 75px,
+        60px 60px,
+        50px 50px,
+        70px 70px,
+        45px 45px,
+        65px 65px,
+        55px 55px;
+    opacity: 0.4;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* Theme Toggle */
@@ -281,6 +344,68 @@ body {
                 font-size var(--transition-speed) ease;
 }
 
+/* Navigation items background colors for different sections */
+/* Default state - no special class means transparent background */
+.nav-item {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+/* Active states for specific sections */
+.nav-item.nav-games {
+    background-color: rgba(106, 90, 205, 0.9);
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(106, 90, 205, 0.3);
+}
+
+.nav-item.nav-about {
+    background-color: rgba(106, 90, 205, 0.9);
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(106, 90, 205, 0.3);
+}
+
+.nav-item.nav-contact {
+    background-color: rgba(106, 90, 205, 0.9);
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(106, 90, 205, 0.3);
+}
+
+/* Dark theme navigation items background colors */
+[data-theme="dark"] .nav-item {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .nav-item.nav-games {
+    background-color: rgba(179, 157, 219, 0.9);
+    color: #333;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(179, 157, 219, 0.3);
+}
+
+[data-theme="dark"] .nav-item.nav-about {
+    background-color: rgba(179, 157, 219, 0.9);
+    color: #333;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(179, 157, 219, 0.3);
+}
+
+[data-theme="dark"] .nav-item.nav-contact {
+    background-color: rgba(179, 157, 219, 0.9);
+    color: #333;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(179, 157, 219, 0.3);
+}
+
 .main-header.scrolled {
     padding: 0.4rem 0;
 }
@@ -323,6 +448,20 @@ body {
     color: var(--primary-color);
     text-decoration: none;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover .logo-icon {
+    transform: scale(1.1);
 }
 
 .nav-logo:hover {
@@ -363,6 +502,7 @@ body {
     transition: all 0.3s ease;
     position: relative;
     padding: 0.3rem 0;
+    background-color: transparent;
 }
 
 .nav-item::after {
@@ -378,10 +518,26 @@ body {
 
 .nav-item:hover {
     color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .nav-item:hover::after {
     width: 100%;
+}
+
+/* Override hover effects for nav items with backgrounds */
+.nav-item.nav-games:hover,
+.nav-item.nav-about:hover,
+.nav-item.nav-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 90, 205, 0.4);
+}
+
+[data-theme="dark"] .nav-item.nav-games:hover,
+[data-theme="dark"] .nav-item.nav-about:hover,
+[data-theme="dark"] .nav-item.nav-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(179, 157, 219, 0.4);
 }
 
 /* Social Links Expansion Styles */
@@ -463,9 +619,41 @@ body {
     top: 100%;
     left: 0;
     width: 100%;
-    height: 0.5rem;
+    height: 12rem;
     background: transparent;
     z-index: 999;
+    pointer-events: none;
+}
+
+/* Add hover bridge for social icons */
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2rem;
+    background: transparent;
+    z-index: 998;
+}
+
+/* Add hover bridge between social icons */
+.social-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2rem;
+    background: transparent;
+    z-index: 998;
+}
+
+/* Ensure social icons are part of the hover area */
+.social-links.expanded {
+    position: relative;
 }
 
 .social-links.expanded .social-icon {
@@ -636,7 +824,7 @@ h2 {
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.5rem;
-    font-size: 1.9rem;
+    font-size: 1.8rem;
 }
 
 h2::after {
@@ -652,7 +840,7 @@ h2::after {
 
 p {
     color: var(--light-text);
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
@@ -721,7 +909,7 @@ p {
 
 .team-card h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     margin-top: 0;
     margin-bottom: 0.5rem;
     color: var(--dark-color);
@@ -730,12 +918,12 @@ p {
 .member-role {
     color: var(--secondary-color);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     margin-bottom: 0.8rem;
 }
 
 .member-desc {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: var(--light-text);
     margin-bottom: 0;
 }
@@ -778,9 +966,67 @@ p {
 
 .service-item h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--dark-color);
+}
+
+/* Game Section */
+.game-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.game-text {
+    flex: 1;
+    padding-right: 2rem;
+    padding-top: 0;
+    margin-top: -4rem;
+}
+
+.game-text h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.game-text p {
+    color: var(--light-text);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.coming-soon {
+    color: var(--secondary-color) !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.game-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-preview {
+    max-width: 80%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-preview:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(92, 45, 145, 0.15);
 }
 
 /* CTA Section */
@@ -804,6 +1050,7 @@ p {
 .cta-section p {
     max-width: 600px;
     margin: 0 auto 2rem;
+    font-size: 1.2rem;
 }
 
 .cta-button {
@@ -911,7 +1158,7 @@ footer p {
     }
     
     .hero-content p {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     
     .team-members, 
@@ -923,6 +1170,24 @@ footer p {
     .team-card,
     .service-item {
         max-width: 100%;
+    }
+    
+    .game-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .game-text {
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .game-image {
+        order: -1;
+    }
+    
+    .game-preview {
+        max-width: 80%;
     }
     
     .nav-container {
@@ -1067,6 +1332,12 @@ footer p {
     
     .nav-logo {
         font-size: 1.6rem;
+        gap: 6px;
+    }
+    
+    .logo-icon {
+        width: 44px;
+        height: 44px;
     }
     
     /* 吊灯小屏幕样式 */
@@ -1285,6 +1556,12 @@ html {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+/* Center the submit button in contact form */
+.contact-form .cta-button {
+    display: block;
+    margin: 0 auto;
 }
 
 /* Mobile responsive for contact page */

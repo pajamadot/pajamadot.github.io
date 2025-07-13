@@ -246,6 +246,59 @@ document.addEventListener('DOMContentLoaded', function() {
     addScrollClasses();
     animateSections();
     
+    // Navigation items background color change based on scroll position
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.hero-section, .services-section, .content-section, .team-section, .cta-section');
+    
+    function updateNavItemBackgrounds() {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        
+        // Reset all nav items to default state
+        navItems.forEach(item => {
+            item.classList.remove('nav-hero', 'nav-games', 'nav-about', 'nav-team', 'nav-contact');
+        });
+        
+        // Find which section is currently in view and highlight corresponding nav item
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                // Determine section type and find corresponding nav item
+                let sectionType = '';
+                let targetNavItem = null;
+                
+                if (section.classList.contains('hero-section')) {
+                    sectionType = 'hero';
+                    // Hero section doesn't have a specific nav item, so no highlighting
+                } else if (section.classList.contains('services-section') || section.id === 'games') {
+                    sectionType = 'games';
+                    targetNavItem = document.querySelector('a[href="#games"]');
+                } else if (section.classList.contains('content-section') || section.id === 'about') {
+                    sectionType = 'about';
+                    targetNavItem = document.querySelector('a[href="#about"]');
+                } else if (section.classList.contains('team-section') || section.id === 'team') {
+                    sectionType = 'team';
+                    // Team section doesn't have a specific nav item, so no highlighting
+                } else if (section.classList.contains('cta-section') || section.id === 'contact') {
+                    sectionType = 'contact';
+                    targetNavItem = document.querySelector('a[href="contact.html"]');
+                }
+                
+                // Add highlight class to the corresponding nav item
+                if (targetNavItem) {
+                    targetNavItem.classList.add(`nav-${sectionType}`);
+                }
+            }
+        });
+    }
+    
+    // Add scroll event listener for nav item backgrounds
+    window.addEventListener('scroll', updateNavItemBackgrounds);
+    
+    // Initialize nav item backgrounds
+    updateNavItemBackgrounds();
+    
     // CTA Button interaction
     const ctaButtons = document.querySelectorAll('.cta-button');
     
@@ -276,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (socialLinks && followUsSpan) {
         let isExpanded = false;
+        let hoverTimeout;
         
         // Function to handle social links expansion on hover
         const handleSocialExpansion = function() {
@@ -289,45 +343,42 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         // Add hover event listeners for social expansion
-        followUsSpan.addEventListener('mouseenter', handleSocialExpansion);
+        followUsSpan.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout);
+            handleSocialExpansion();
+        });
         
         // Keep expanded when hovering over the social links area
         socialLinks.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout);
             if (!isExpanded) {
                 handleSocialExpansion();
             }
         });
         
-        // Remove mouseleave events to keep expanded state
-        // socialLinks.addEventListener('mouseleave', function(e) {
-        //     // Check if we're moving to the followUsSpan
-        //     const relatedTarget = e.relatedTarget;
-        //     if (!socialLinks.contains(relatedTarget) && !followUsSpan.contains(relatedTarget)) {
-        //         handleSocialCollapse();
-        //     }
-        // });
-        
-        // Also handle mouseleave for the span - but don't collapse
-        followUsSpan.addEventListener('mouseleave', function(e) {
-            // Keep expanded - don't collapse when leaving the span
-            // const relatedTarget = e.relatedTarget;
-            // if (!socialLinks.contains(relatedTarget) && !followUsSpan.contains(relatedTarget)) {
-            //     handleSocialCollapse();
-            // }
-        });
-        
-        // Also expand on click for better UX
-        followUsSpan.addEventListener('click', function() {
+        // Simple approach: only collapse when mouse is completely outside
+        document.addEventListener('mouseover', function(e) {
             if (isExpanded) {
-                handleSocialCollapse();
-            } else {
-                handleSocialExpansion();
+                const target = e.target;
+                const isInsideSocialArea = socialLinks.contains(target) || 
+                                        target.classList.contains('social-icon') ||
+                                        target === followUsSpan;
+                
+                if (!isInsideSocialArea) {
+                    clearTimeout(hoverTimeout);
+                    hoverTimeout = setTimeout(() => {
+                        handleSocialCollapse();
+                    }, 200);
+                } else {
+                    clearTimeout(hoverTimeout);
+                }
             }
         });
         
         // Add click functionality to social icons
         const socialIcons = document.querySelectorAll('.social-icon');
         socialIcons.forEach(icon => {
+            // Add click functionality
             icon.addEventListener('click', function(e) {
                 e.preventDefault();
                 // Add click animation
@@ -343,14 +394,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-            // Add click outside to close functionality
-    document.addEventListener('click', function(e) {
-        if (!socialLinks.contains(e.target) && !followUsSpan.contains(e.target)) {
-            if (isExpanded) {
-                handleSocialCollapse();
+        // Add click outside to close functionality
+        document.addEventListener('click', function(e) {
+            if (!socialLinks.contains(e.target) && !followUsSpan.contains(e.target)) {
+                if (isExpanded) {
+                    handleSocialCollapse();
+                }
             }
-        }
-    });
+        });
+    }
     
     // Header scroll effect
     const header = document.querySelector('.main-header');
@@ -367,8 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         lastScrollTop = scrollTop;
     });
-}
-
+    
     // Logo interaction - subtle hover effect
     const logo = document.querySelector('.logo');
     if (logo) {
