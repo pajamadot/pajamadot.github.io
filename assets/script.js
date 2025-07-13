@@ -16,6 +16,15 @@ document.addEventListener('DOMContentLoaded', function() {
         htmlElement.setAttribute('data-theme', systemTheme);
     }
     
+    // Initialize lightbulb state based on initial theme
+    const lightbulb = document.getElementById('lightbulb');
+    if (lightbulb) {
+        const initialTheme = htmlElement.getAttribute('data-theme');
+        if (initialTheme === 'dark') {
+            lightbulb.classList.add('on');
+        }
+    }
+    
     // Toggle theme when button is clicked
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
@@ -25,11 +34,86 @@ document.addEventListener('DOMContentLoaded', function() {
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
+            // Update bulb state to stay in sync
+            if (lightbulb) {
+                if (newTheme === 'dark') {
+                    lightbulb.classList.add('on');
+                } else {
+                    lightbulb.classList.remove('on');
+                }
+            }
+            
             // Add button animation
             themeToggle.classList.add('theme-toggle-animate');
             setTimeout(() => {
                 themeToggle.classList.remove('theme-toggle-animate');
             }, 300);
+        });
+    }
+    
+    // Lightbulb theme toggle functionality
+    
+    if (lightbulb) {
+        // Set initial bulb state based on current theme
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            lightbulb.classList.add('on');
+        }
+        
+        // Toggle theme when lightbulb is clicked
+        lightbulb.addEventListener('click', function() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            // Add click animation
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 300);
+            
+            // Toggle bulb state
+            if (newTheme === 'dark') {
+                this.classList.add('on');
+            } else {
+                this.classList.remove('on');
+            }
+            
+            // Update theme
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Also update the theme toggle button to stay in sync
+            if (themeToggle) {
+                const icon = themeToggle.querySelector('i');
+                if (icon) {
+                    if (newTheme === 'dark') {
+                        icon.classList.remove('fa-moon');
+                        icon.classList.add('fa-sun');
+                    } else {
+                        icon.classList.remove('fa-sun');
+                        icon.classList.add('fa-moon');
+                    }
+                }
+            }
+        });
+        
+        // Sync bulb state when theme is changed via other methods
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                    const theme = htmlElement.getAttribute('data-theme');
+                    if (theme === 'dark') {
+                        lightbulb.classList.add('on');
+                    } else {
+                        lightbulb.classList.remove('on');
+                    }
+                }
+            });
+        });
+        
+        observer.observe(htmlElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
         });
     }
     

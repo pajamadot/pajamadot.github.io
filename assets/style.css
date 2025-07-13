@@ -2,6 +2,167 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap');
 
+/* 吊灯样式 */
+.chandelier-container {
+    position: fixed;
+    top: 0;
+    left: 2%;
+    z-index: 10;
+    pointer-events: none;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    animation: gentleSwing 4s ease-in-out infinite;
+}
+
+.chandelier {
+    position: relative;
+    width: 60px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 15%;
+}
+
+.chandelier-rope {
+    width: 6px;
+    height: 60vh;
+    background: linear-gradient(45deg, #8b7355, #d4af37, #8b7355);
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.chandelier-rope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    background: linear-gradient(45deg, #8b7355, #d4af37);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.chandelier-rope::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 4px;
+    background: linear-gradient(45deg, #8b7355, #d4af37);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lightbulb {
+    position: relative;
+    top: 0;
+    left: 33%; /* 向左微调 */
+    transform: translateX(-50%);
+    width: 40px;
+    height: 50px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    z-index: 2;
+    margin-top: -15px; /* 让灯泡底座与绳子底部无缝衔接 */
+}
+
+.lightbulb:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.bulb-glass {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 35px;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    border-radius: 15px 15px 15px 15px / 17px 17px 15px 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #d0d0d0;
+}
+
+.bulb-filament {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #ffd700;
+    border-radius: 1px;
+    box-shadow: 0 0 4px #ffd700;
+}
+
+.bulb-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 15px;
+    background: linear-gradient(45deg, #8b7355, #d4af37);
+    border-radius: 10px 10px 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 灯泡发光效果 */
+.lightbulb.on .bulb-glass {
+    background: linear-gradient(135deg, #fff8dc, #fffacd);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-color: #ffd700;
+}
+
+.lightbulb.on .bulb-filament {
+    background: #ff6b35;
+    box-shadow: 0 0 8px #ff6b35, 0 0 16px #ff6b35;
+}
+
+.lightbulb.on .bulb-base {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 暗色主题下的灯泡效果 */
+[data-theme="dark"] .lightbulb:not(.on) .bulb-glass {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-color: #404040;
+}
+
+[data-theme="dark"] .lightbulb:not(.on) .bulb-filament {
+    background: #666;
+    box-shadow: none;
+}
+
+/* 灯泡点击动画 */
+.lightbulb.clicked {
+    animation: bulbClick 0.3s ease;
+}
+
+@keyframes bulbClick {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(0.9); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+/* 整体轻微晃荡效果 */
+@keyframes gentleSwing {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(0.5deg); }
+}
+
 :root {
     /* Light Theme - Default */
     --primary-color: #6a5acd;      
@@ -716,86 +877,82 @@ footer p {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-section, 
-    .content-section, 
-    .team-section, 
-    .services-section, 
+    .content-section,
+    .team-section,
+    .services-section,
     .cta-section {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1rem;
     }
     
     .hero-section {
-        padding: 3rem 1.5rem;
+        min-height: 60vh;
     }
     
     .hero-content {
-        flex-direction: column;
         text-align: center;
-        gap: 2rem;
+        max-width: 100%;
+        padding: 0 1rem;
     }
     
     .hero-title {
-        max-width: 100%;
+        margin-bottom: 1rem;
     }
     
     .hero-description {
-        max-width: 100%;
+        margin-top: 1.5rem;
     }
     
     .hero-content h1 {
-        font-size: 3.2rem;
+        font-size: 2.5rem;
     }
     
     .tagline {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     
     .hero-content p {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     
     .team-members, 
     .services-grid {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
     .team-card,
     .service-item {
-        width: 100%;
-        max-width: none;
+        max-width: 100%;
     }
     
-    /* Navigation responsive styles */
     .nav-container {
-        gap: 0.75rem;
+        gap: 1rem;
     }
     
     .main-nav {
-        order: 3;
-        position: static;
-    }
-
-    .nav-links {
         display: none;
-        position: absolute;
+    }
+    
+    .nav-links {
+        position: fixed;
         top: 100%;
         left: 0;
-        right: 0;
-        flex-direction: column;
+        width: 100%;
         background-color: var(--card-bg);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        padding: 1rem 0;
-        z-index: 100;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
     }
     
     .nav-links.active {
-        display: flex;
+        transform: translateY(0);
     }
     
     .nav-links li {
-        margin: 0.7rem 0;
-        width: 100%;
-        text-align: center;
+        margin: 1rem 0;
     }
     
     .nav-item {
@@ -804,31 +961,21 @@ footer p {
     
     .social-links span {
         font-size: 1.2rem;
-        color: var(--text-color);
-        font-weight: 500;
     }
     
     .social-links {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+        align-items: center;
+        gap: 1rem;
     }
     
     .social-links span {
-        margin-right: 0;
         margin-bottom: 0.5rem;
     }
     
     .social-icon {
-        position: static;
-        margin: 0.2rem 0;
-        background-color: transparent;
-        box-shadow: none;
-        padding: 0.3rem;
-        min-width: auto;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
+        font-size: 1.5rem;
+        padding: 0.8rem;
     }
     
     .social-links.expanded .social-icon {
@@ -836,52 +983,135 @@ footer p {
     }
     
     .social-links.expanded .social-icon:nth-child(2) {
-        top: calc(100% + 0.5rem);
-        left: 50%;
-        transform: translateX(-50%);
+        transform: translateY(0);
     }
     
     .social-links.expanded .social-icon:nth-child(3) {
-        top: calc(100% + 3rem);
-        left: 50%;
-        transform: translateX(-50%);
+        transform: translateY(0);
     }
     
     .social-links.expanded .social-icon:nth-child(4) {
-        top: calc(100% + 5.5rem);
-        left: 50%;
-        transform: translateX(-50%);
+        transform: translateY(0);
     }
     
     .theme-toggle-container {
-        order: 1;
+        margin-left: 0;
     }
     
     .mobile-nav-toggle {
         display: block;
-        order: 2;
     }
     
     .main-header.scrolled .nav-item {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
     
     .main-header.scrolled .social-links span {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
     
     .main-header.scrolled .nav-logo {
-        font-size: 1.55rem;
+        font-size: 1.8rem;
+    }
+    
+    /* 吊灯移动端样式 */
+    .chandelier-container {
+        left: 3%;
+        transform: scale(0.8);
+    }
+    
+    .chandelier {
+        width: 48px;
+        padding-top: 12%;
+    }
+    
+    .chandelier-rope {
+        height: 50vh;
+    }
+    
+    .chandelier-rope::before {
+        height: 8px;
+    }
+    
+    .chandelier-rope::after {
+        width: 10px;
+        height: 3px;
+    }
+    
+    .lightbulb {
+        width: 32px;
+        height: 40px;
+        bottom: 0;
+    }
+    
+    .bulb-glass {
+        width: 24px;
+        height: 28px;
+        top: -28px;
+    }
+    
+    .bulb-filament {
+        top: -22px;
+    }
+    
+    .bulb-base {
+        width: 16px;
+        height: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .header-container {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.5rem;
     }
     
     .nav-logo {
         font-size: 1.6rem;
+    }
+    
+    /* 吊灯小屏幕样式 */
+    .chandelier-container {
+        left: 2%;
+        transform: scale(0.6);
+    }
+    
+    .chandelier {
+        width: 36px;
+        padding-top: 8%;
+    }
+    
+    .chandelier-rope {
+        height: 45vh;
+    }
+    
+    .chandelier-rope::before {
+        height: 6px;
+    }
+    
+    .chandelier-rope::after {
+        width: 8px;
+        height: 2px;
+    }
+    
+    .lightbulb {
+        width: 24px;
+        height: 30px;
+        bottom: 0;
+    }
+    
+    .bulb-glass {
+        width: 18px;
+        height: 21px;
+        top: -21px;
+    }
+    
+    .bulb-filament {
+        top: -17px;
+    }
+    
+    .bulb-base {
+        width: 12px;
+        height: 9px;
     }
 }
 
